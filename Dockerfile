@@ -11,6 +11,12 @@ COPY package.json package-lock.json ./
 # Install dependencies (ignoring scripts to prevent running the prepare script)
 RUN npm install --ignore-scripts
 
+# Copia o schema do Prisma
+COPY prisma ./prisma
+
+# Gera o Prisma Client
+RUN npx prisma generate
+
 # Copy the rest of the application source code
 COPY . .
 
@@ -32,7 +38,6 @@ COPY --from=builder /app/package-lock.json /app/package-lock.json
 RUN npm ci --omit=dev --ignore-scripts
 
 # Set environment variables for API key and custom API URL if needed
-
 
 # Specify the command to run the application
 ENTRYPOINT ["node", "dist/index.js"]
