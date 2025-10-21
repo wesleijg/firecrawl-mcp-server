@@ -614,7 +614,7 @@ Extract structured information from web pages using LLM capabilities. Supports b
     return asText(res);
   },
 });
-const PORT = Number(process.env.PORT || 3000);
+const PORT = Number(process.env.PORT || 3002);
 const HOST =
   process.env.CLOUD_SERVICE === 'true'
     ? '0.0.0.0'
